@@ -105,7 +105,7 @@ public class Main {
     }
 
     public static void leerxml() {
-        Path path = Path.of("src//juegos.xml");
+        Path path = Path.of("Practica_xml1//src//juegos.xml");
         File xml = path.toFile();
         /*PRIMEROS PASOS DE CONFIGURACIN*/
         DocumentBuilder builder = createBuilder();
