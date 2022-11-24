@@ -31,13 +31,12 @@ public class Main {
         try {
             String comando;
             Scanner t = new Scanner(System.in);
-            String opcion;
             while (true) {
                 System.out.println("INGRESAR LA FUNCION QUE DESEA REALIZAR");
                 comando = t.nextLine();
                 switch (comando.toLowerCase()) {
                     case "leer" -> leerxml();
-                    case "add" -> añadirnodo();
+                    case "add" -> add_nodo();
                     case "eliminar" -> eliminarnodo();
                     case "salir" -> salir();
                     default -> System.out.println("INGRESAR LAS OPCIONES DEL MENU");
@@ -48,7 +47,7 @@ public class Main {
         }
     }
 
-    public static void añadirnodo() {
+    public static void add_nodo() {
         try {
             String titulo, genero, plataforma, fecha;
             Scanner t = new Scanner(System.in);
