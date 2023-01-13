@@ -1,5 +1,4 @@
-import Controllers.AlumnosController;
-import Controllers.PersonasController;
+import Controllers.*;
 import Tablas.Alumnos;
 import Tablas.Asignaturas;
 import Tablas.Personas;
@@ -15,7 +14,7 @@ public class App {
         int opcionMenu;
         int opcionTabla;
 
-        //OBJETO TablasController Y CREAMOS LAS TABLAS.
+        //OBJETO Controllers.TablasController Y CREAMOS LAS TABLAS.
         TablasController tablasController = new TablasController();
         tablasController.crearTablas(Personas.class);
         tablasController.crearTablas(Alumnos.class);
@@ -39,6 +38,12 @@ public class App {
                     } else if (opcionTabla == 2) {
                         AlumnosController alumnosController = new AlumnosController();
                         alumnosController.agregar();
+                    } else if (opcionTabla == 3) {
+                        ProfesoresController profesoresController = new ProfesoresController();
+                        profesoresController.agregar();
+                    } else if (opcionTabla == 4) {
+                        AsignaturasController asignaturasController = new AsignaturasController();
+                        asignaturasController.agregar();
                     }
                 }
             }

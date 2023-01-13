@@ -13,11 +13,11 @@ public class Asignaturas {
     @Column(name = "IdAsignatura", length = 6)
     int idAsignatura;
 
-    @Column(name = "Nombre", length = 20)
-    String Nombre;
-
     @Column(name = "IdProfesor", length = 6)
     int IdProfesor;
+
+    @Column(name = "Nombre", length = 20)
+    String Nombre;
 
     //GETTER AND SETTER
     public int getIdAsignatura() {

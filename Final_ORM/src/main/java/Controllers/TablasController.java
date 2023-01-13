@@ -1,3 +1,5 @@
+package Controllers;
+
 import Tablas.Alumnos;
 import Tablas.Asignaturas;
 import Tablas.Personas;
