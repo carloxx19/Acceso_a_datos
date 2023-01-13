@@ -1,14 +1,13 @@
 package Controllers;
 
-import Tablas.Alumnos;
+import Tablas.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
-public class AlumnosController implements MetodosTablas {
-
+public class ProfesoresController implements MetodosTablas {
     @Override
     public void agregar() {
         Scanner teclado = new Scanner(System.in);
@@ -21,25 +20,23 @@ public class AlumnosController implements MetodosTablas {
             System.out.println("añade el dni");
             dni = teclado.next();
 
-            System.out.println("añade el ID del alumno");
+            System.out.println("añade el ID del profesor");
             id = teclado.nextInt();
-
 
             //aqui agrego datos a la base vacia
             Configuration configuration = new Configuration();
             configuration.configure("hibernate2.cfg.xml");
-            configuration.addAnnotatedClass(Alumnos.class);
+            configuration.addAnnotatedClass(Profesores.class);
 
             SessionFactory sessionFactory = configuration.buildSessionFactory();
             Session session = sessionFactory.openSession();
 
-            Alumnos alumnos = new Alumnos();
-            alumnos.setDNI(dni);
-            alumnos.setIdAlumno(id);
-
+            Profesores profesores = new Profesores();
+            profesores.setDNI(dni);
+            profesores.setIdAlumno(id);
 
             session.beginTransaction();
-            session.persist(alumnos);
+            session.persist(profesores);
             session.getTransaction().commit();
 
             System.out.println("S - salir");
