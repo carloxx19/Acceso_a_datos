@@ -2,17 +2,20 @@ package Controllers;
 
 import Tablas.Alumnos;
 import Tablas.Asignaturas;
+import Tablas.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
 public class AsignaturasController implements MetodosTablas {
+    Scanner teclado = new Scanner(System.in);
 
     @Override
     public void agregar() {
-        Scanner teclado = new Scanner(System.in);
+
 
         int idAsignatura;
         int idProfesor;
@@ -51,14 +54,14 @@ public class AsignaturasController implements MetodosTablas {
             System.out.println("S - salir");
             salir = teclado.next();
 
-            if (salir.equalsIgnoreCase("S")){
+            if (salir.equalsIgnoreCase("S")) {
                 break;
             }
         }
     }
 
     @Override
-    public void leer() {
+    public void eliminar() {
 
     }
 
@@ -69,6 +72,28 @@ public class AsignaturasController implements MetodosTablas {
 
     @Override
     public void consultar() {
+        int id;
 
+        System.out.println("Introduce el ID de la asignatura.");
+        id = teclado.nextInt();
+        System.out.println(obtenerId(id).toString());
+    }
+
+    public Asignaturas obtenerId(int id) {
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Asignaturas.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Asignaturas asignaturas = null;
+
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        asignaturas = session.get(Asignaturas.class, id);
+        session.getTransaction().commit();
+        return asignaturas;
     }
 }

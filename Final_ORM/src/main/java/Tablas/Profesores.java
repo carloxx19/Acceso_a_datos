@@ -1,28 +1,29 @@
 package Tablas;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Profesores")
 public class Profesores {
 
     @Id
+    //@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "IdProfesores", length = 6)
-    int IdAlumno;
+    int IdProfesor;
 
     @Column(name = "DNI", length = 9)
     String DNI;
 
+    //@OneToOne(mappedBy = "Profesores")
+    //public Asignaturas asignaturas;
+
     //Getter and Setter
     public int getIdAlumno() {
-        return IdAlumno;
+        return IdProfesor;
     }
 
     public void setIdAlumno(int idAlumno) {
-        IdAlumno = idAlumno;
+        IdProfesor = idAlumno;
     }
 
     public String getDNI() {
@@ -31,5 +32,12 @@ public class Profesores {
 
     public void setDNI(String DNI) {
         this.DNI = DNI;
+    }
+
+    @Override
+    public String toString() {
+        return "***DATOS DEL PROFESOR***" +
+                "\nDNI= " + DNI +
+                "\nID Profesor= " + IdProfesor;
     }
 }

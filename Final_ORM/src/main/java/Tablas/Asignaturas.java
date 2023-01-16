@@ -1,9 +1,6 @@
 package Tablas;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Asignaturas")
@@ -17,7 +14,11 @@ public class Asignaturas {
     int IdProfesor;
 
     @Column(name = "Nombre", length = 20)
-    String Nombre;
+    String nombre;
+
+    //@OneToOne
+    //@JoinColumn(name = "IdProfesor")
+    //public Profesores profesores;
 
     //GETTER AND SETTER
     public int getIdAsignatura() {
@@ -29,11 +30,11 @@ public class Asignaturas {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        nombre = nombre;
     }
 
     public int getIdProfesor() {
@@ -42,5 +43,13 @@ public class Asignaturas {
 
     public void setIdProfesor(int idProfesor) {
         IdProfesor = idProfesor;
+    }
+
+    @Override
+    public String toString() {
+        return "***DATOS DE LA ASIGNATURA***" +
+                "\nID Asignatura= " + idAsignatura +
+                "\nID Profesor= " + IdProfesor +
+                "\nNombre asignatura= " + nombre;
     }
 }

@@ -32,4 +32,11 @@ public class Alumnos {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+
+    @Override
+    public String toString() {
+        return "***DATOS DEL ALUMNO***" +
+                "\nDNI= " + DNI +
+                "\nID Alumno= " + IdAlumno;
+    }
 }

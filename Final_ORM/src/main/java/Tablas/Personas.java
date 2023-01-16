@@ -17,10 +17,10 @@ public class Personas {
     @Column(name = "Nombre", length = 20)
     private String Nombre;
 
-    @Column(name = "Apellido",length = 40)
+    @Column(name = "Apellido", length = 40)
     private String Apellido;
 
-    @Column(name = "Ciudad",length = 20)
+    @Column(name = "Ciudad", length = 20)
     private String Ciudad;
 
     //GETTER AND SETTER
@@ -54,5 +54,14 @@ public class Personas {
 
     public void setCiudad(String ciudad) {
         Ciudad = ciudad;
+    }
+
+    @Override
+    public String toString() {
+        return "***DATOS DE LA PERSONA*** " +
+                "\nDNI= " + DNI +
+                "\nNombre= " + Nombre +
+                "\nApellido= " + Apellido +
+                "\nCiudad= " + Ciudad;
     }
 }

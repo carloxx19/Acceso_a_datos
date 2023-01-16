@@ -1,17 +1,21 @@
 package Controllers;
 
 import Tablas.Alumnos;
+import Tablas.Personas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
+
 public class AlumnosController implements MetodosTablas {
+    Scanner teclado = new Scanner(System.in);
 
     @Override
     public void agregar() {
-        Scanner teclado = new Scanner(System.in);
+
         String dni;
         int id;
         String salir;
@@ -37,7 +41,6 @@ public class AlumnosController implements MetodosTablas {
             alumnos.setDNI(dni);
             alumnos.setIdAlumno(id);
 
-
             session.beginTransaction();
             session.persist(alumnos);
             session.getTransaction().commit();
@@ -45,15 +48,20 @@ public class AlumnosController implements MetodosTablas {
             System.out.println("S - salir");
             salir = teclado.next();
 
-            if (salir.equalsIgnoreCase("S")){
+            if (salir.equalsIgnoreCase("S")) {
                 break;
             }
         }
     }
 
     @Override
-    public void leer() {
+    public void consultar() {
 
+        int id;
+
+        System.out.println("Introduce el ID de el alumno a consultar.");
+        id = teclado.nextInt();
+        System.out.println(obtenerId(id).toString());
     }
 
     @Override
@@ -62,7 +70,25 @@ public class AlumnosController implements MetodosTablas {
     }
 
     @Override
-    public void consultar() {
+    public void eliminar() {
 
+    }
+
+    public Alumnos obtenerId(int id) {
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Alumnos.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Alumnos alumnos = null;
+
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        alumnos = session.get(Alumnos.class, id);
+        session.getTransaction().commit();
+        return alumnos;
     }
 }

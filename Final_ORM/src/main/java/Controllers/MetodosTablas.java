@@ -4,9 +4,11 @@ public interface MetodosTablas {
 
     public void agregar();
 
-    public void leer();
+    public void eliminar();
 
     public void actualizar();
 
     public void consultar();
+
+
 }

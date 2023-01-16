@@ -18,8 +18,9 @@ public class App {
         TablasController tablasController = new TablasController();
         tablasController.crearTablas(Personas.class);
         tablasController.crearTablas(Alumnos.class);
-        tablasController.crearTablas(Profesores.class);
         tablasController.crearTablas(Asignaturas.class);
+        tablasController.crearTablas(Profesores.class);
+
 
         while (true) {
             //MOSTRAMOS EL MENU DE LA OPCION QUE QUEREMOS REALIZAR
@@ -28,23 +29,57 @@ public class App {
 
             switch (opcionMenu) {
                 case 1 -> {
-                    //MUESTRA EL MENU AGREGAR Y SELEECIONAMOS LA TABLA EN LA QUE QUEREMOS AGREGAR
+                    //CASE 1 -> AGREGAR
+                    //MUESTRA EL MENU,  Y SELEECIONAMOS LA TABLA EN LA QUE QUEREMOS AGREGAR
                     tablasController.menuTablas();
                     opcionTabla = teclado.nextInt();
                     if (opcionTabla == 1) {
-                        //TABLA PERSONAS.
-                        PersonasController ps = new PersonasController();
-                        ps.agregar();
+                        //AGREGAR TABLA PERSONAS.
+                        PersonasController personasController = new PersonasController();
+                        personasController.agregar();
                     } else if (opcionTabla == 2) {
+                        //AGREGAR TABLA ALUMNOS
                         AlumnosController alumnosController = new AlumnosController();
                         alumnosController.agregar();
                     } else if (opcionTabla == 3) {
+                        //AGREGAR TABLA PROFESORES
                         ProfesoresController profesoresController = new ProfesoresController();
                         profesoresController.agregar();
                     } else if (opcionTabla == 4) {
+                        //AGREGAR TABLA ASIGNATURAS
                         AsignaturasController asignaturasController = new AsignaturasController();
                         asignaturasController.agregar();
                     }
+                }
+                case 2 -> {
+                    //CASE 2-> CONSULTAR POR ID.
+                    tablasController.menuTablas();
+                    opcionTabla = teclado.nextInt();
+                    if (opcionTabla == 1) {
+                        PersonasController personasController = new PersonasController();
+                        personasController.consultar();
+                    } else if (opcionTabla == 2) {
+                        AlumnosController alumnosController = new AlumnosController();
+                        alumnosController.consultar();
+                    } else if (opcionTabla == 3) {
+                        ProfesoresController profesoresController = new ProfesoresController();
+                        profesoresController.consultar();
+                    } else if (opcionTabla == 4) {
+                        AsignaturasController asignaturasController = new AsignaturasController();
+                        asignaturasController.consultar();
+                    }
+                }
+                case 3 -> {
+                    //CASE 3-> ACTUALIZAR POR ID
+                    tablasController.menuTablas();
+                    opcionTabla = teclado.nextInt();
+
+                    if (opcionTabla == 1) {
+
+                    }
+
+                    PersonasController personasController = new PersonasController();
+                    personasController.actualizar();
                 }
             }
             //PersonasController personasController = new PersonasController();

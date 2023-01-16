@@ -17,21 +17,15 @@ public class TablasController {
                               
                 ***OPCIONES***
                 1.-AGREGAR.
-                2.-LEER.
+                2.-CONSULTAR.
                 3.-ACTUALIZAR.
-                4.-CONSULTAR.
+                4.-ELIMINAR.
                 """);
     }
 
     public void menuTablas() {
-        System.out.println("***TABLAS***");
-        nombreTablas(Personas.class);
-        nombreTablas(Alumnos.class);
-        nombreTablas(Profesores.class);
-        nombreTablas(Asignaturas.class);
-
         System.out.println("""
-               ***AGREGAR***    
+               ***AGREGAR***
                SELECCIONE LA TABLA.
                 """);
         System.out.println("1.-" + nombreTablas(Personas.class));
