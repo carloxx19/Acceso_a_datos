@@ -6,9 +6,7 @@ public interface MetodosTablas {
 
     public void eliminar();
 
-    public void actualizar();
+    void actualizar();
 
     public void consultar();
-
-
 }

@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class Profesores {
 
     @Id
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "IdProfesores", length = 6)
     int IdProfesor;
 
@@ -18,12 +17,12 @@ public class Profesores {
     //public Asignaturas asignaturas;
 
     //Getter and Setter
-    public int getIdAlumno() {
+    public int getIdProfesor() {
         return IdProfesor;
     }
 
-    public void setIdAlumno(int idAlumno) {
-        IdProfesor = idAlumno;
+    public void setIdProfesor(int idProfesor) {
+        IdProfesor = idProfesor;
     }
 
     public String getDNI() {

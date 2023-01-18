@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-//MAPEADO
 @Entity
 @Table(name = "Personas")
 public class Personas {

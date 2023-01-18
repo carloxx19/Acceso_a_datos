@@ -16,7 +16,6 @@ public class AsignaturasController implements MetodosTablas {
     @Override
     public void agregar() {
 
-
         int idAsignatura;
         int idProfesor;
         String nombre;
@@ -61,16 +60,6 @@ public class AsignaturasController implements MetodosTablas {
     }
 
     @Override
-    public void eliminar() {
-
-    }
-
-    @Override
-    public void actualizar() {
-
-    }
-
-    @Override
     public void consultar() {
         int id;
 
@@ -95,5 +84,40 @@ public class AsignaturasController implements MetodosTablas {
         asignaturas = session.get(Asignaturas.class, id);
         session.getTransaction().commit();
         return asignaturas;
+    }
+
+    @Override
+    public void actualizar() {
+        int modificador;
+        String modificadorString;
+
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Asignaturas.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("introduce el ID de la asignatura a modificar");
+        modificador = teclado.nextInt();
+        Asignaturas asignaturas = session.getReference(Asignaturas.class, modificador);
+
+        System.out.println("introduce el ID del profesor a modificar");
+        modificador = teclado.nextInt();
+        asignaturas.setIdProfesor(modificador);
+
+        System.out.println("introduce el nombre de la asignatura a modificar");
+        modificadorString = teclado.next();
+        asignaturas.setNombre(modificadorString);
+
+        session.merge(asignaturas);
+        transaction.commit();
+        session.close();
+    }
+
+    @Override
+    public void eliminar() {
+
     }
 }

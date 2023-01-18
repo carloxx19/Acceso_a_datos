@@ -49,6 +49,8 @@ public class App {
                         //AGREGAR TABLA ASIGNATURAS
                         AsignaturasController asignaturasController = new AsignaturasController();
                         asignaturasController.agregar();
+                    } else {
+                        System.out.println("opcion introducida no valida");
                     }
                 }
                 case 2 -> {
@@ -67,6 +69,8 @@ public class App {
                     } else if (opcionTabla == 4) {
                         AsignaturasController asignaturasController = new AsignaturasController();
                         asignaturasController.consultar();
+                    } else {
+                        System.out.println("opcion introducida no valida");
                     }
                 }
                 case 3 -> {
@@ -75,24 +79,25 @@ public class App {
                     opcionTabla = teclado.nextInt();
 
                     if (opcionTabla == 1) {
-
+                        PersonasController personasController = new PersonasController();
+                        personasController.actualizar();
+                    } else if (opcionTabla == 2) {
+                        AlumnosController alumnosController = new AlumnosController();
+                        alumnosController.actualizar();
+                    } else if ((opcionTabla == 3)) {
+                        ProfesoresController profesoresController = new ProfesoresController();
+                        profesoresController.actualizar();
+                    } else if (opcionTabla == 4) {
+                        AsignaturasController asignaturasController = new AsignaturasController();
+                        asignaturasController.actualizar();
+                    } else {
+                        System.out.println("opcion introducida no valida");
                     }
+                }
+                case 4 -> {
 
-                    PersonasController personasController = new PersonasController();
-                    personasController.actualizar();
                 }
             }
-            //PersonasController personasController = new PersonasController();
-            // personasController.agregar();
-
-            //aqui add datos a la base vacia
-       /* session.beginTransaction();
-        Personas p = new Personas();
-        p.setDNI("qq");
-        session.persist(p);
-        session.getTransaction().commit();
-
-        */
         }
     }
 }

@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
 import java.util.Scanner;
 
 public class PersonasController implements InterfacePersonas {
@@ -97,7 +96,6 @@ public class PersonasController implements InterfacePersonas {
         System.out.println("Introduce la ciudad");
         modificador = teclado.next();
         personas.setCiudad(modificador);
-
 
         session.merge(personas);
         transaction.commit();

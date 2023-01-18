@@ -11,12 +11,14 @@ public class Alumnos {
 
     @Id
     @Column(name = "IdAlumno", length = 6)
-    int IdAlumno;
+    private int IdAlumno;
 
     @Column(name = "DNI", length = 9)
-    String DNI;
+    private String DNI;
 
     //Getter and Setter
+
+
     public int getIdAlumno() {
         return IdAlumno;
     }

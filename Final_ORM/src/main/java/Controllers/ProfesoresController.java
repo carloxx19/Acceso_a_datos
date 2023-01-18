@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
 import java.util.Scanner;
 
 public class ProfesoresController implements MetodosTablas {
@@ -37,7 +36,7 @@ public class ProfesoresController implements MetodosTablas {
 
             Profesores profesores = new Profesores();
             profesores.setDNI(dni);
-            profesores.setIdAlumno(id);
+            profesores.setIdProfesor(id);
 
             session.beginTransaction();
             session.persist(profesores);
@@ -63,14 +62,34 @@ public class ProfesoresController implements MetodosTablas {
 
     @Override
     public void actualizar() {
+        int modificador;
+        String modificadorString;
 
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Profesores.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("introduce el ID del profesor a modificar");
+        modificador = teclado.nextInt();
+        Profesores profesores = session.getReference(Profesores.class, modificador);
+
+        System.out.println("Introduce el nuevo DNI del profesor");
+        modificadorString = teclado.next();
+        profesores.setDNI(modificadorString);
+
+        session.merge(profesores);
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public void eliminar() {
 
     }
-
 
     public Profesores obtenerId(int id) {
         Configuration configuration = new Configuration();

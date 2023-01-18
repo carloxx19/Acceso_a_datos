@@ -1,14 +1,11 @@
 package Controllers;
 
 import Tablas.Alumnos;
-import Tablas.Personas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
 import java.util.Scanner;
-
 
 public class AlumnosController implements MetodosTablas {
     Scanner teclado = new Scanner(System.in);
@@ -27,7 +24,6 @@ public class AlumnosController implements MetodosTablas {
 
             System.out.println("añade el ID del alumno");
             id = teclado.nextInt();
-
 
             //aqui agrego datos a la base vacia
             Configuration configuration = new Configuration();
@@ -56,7 +52,6 @@ public class AlumnosController implements MetodosTablas {
 
     @Override
     public void consultar() {
-
         int id;
 
         System.out.println("Introduce el ID de el alumno a consultar.");
@@ -66,7 +61,28 @@ public class AlumnosController implements MetodosTablas {
 
     @Override
     public void actualizar() {
+        int modificador;
+        String modificadorString;
 
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Alumnos.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("introduce el ID del alumno a modificar");
+        modificador = teclado.nextInt();
+        Alumnos alumnos = session.getReference(Alumnos.class, modificador);
+
+        System.out.println("Introduce nuevo DNI del alumno");
+        modificadorString = teclado.next();
+        alumnos.setDNI(modificadorString);
+
+        session.merge(alumnos);
+        transaction.commit();
+        session.close();
     }
 
     @Override
