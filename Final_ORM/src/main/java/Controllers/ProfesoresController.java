@@ -1,6 +1,5 @@
 package Controllers;
 
-import Tablas.Alumnos;
 import Tablas.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -118,9 +117,6 @@ public class ProfesoresController implements MetodosTablas {
         Session session = sessionFactory.openSession();
 
         Profesores profesores = null;
-
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
 
         profesores = session.get(Profesores.class, id);
         session.getTransaction().commit();

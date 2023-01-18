@@ -1,12 +1,11 @@
 package Controllers;
 
 public interface MetodosTablas {
+    void agregar();
 
-    public void agregar();
-
-    public void eliminar();
+    void eliminar();
 
     void actualizar();
 
-    public void consultar();
+    void consultar();
 }
