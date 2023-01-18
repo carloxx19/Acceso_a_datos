@@ -88,7 +88,25 @@ public class ProfesoresController implements MetodosTablas {
 
     @Override
     public void eliminar() {
+        int modificador;
 
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Profesores.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("Introduce el id del profesor que quieres eliminar");
+        modificador = teclado.nextInt();
+
+        Profesores profesores = new Profesores();
+        profesores.setIdProfesor(modificador);
+
+        session.remove(profesores);
+        transaction.commit();
+        session.close();
     }
 
     public Profesores obtenerId(int id) {

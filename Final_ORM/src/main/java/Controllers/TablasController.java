@@ -25,7 +25,6 @@ public class TablasController {
 
     public void menuTablas() {
         System.out.println("""
-               ***AGREGAR***
                SELECCIONE LA TABLA.
                 """);
         System.out.println("1.-" + nombreTablas(Personas.class));

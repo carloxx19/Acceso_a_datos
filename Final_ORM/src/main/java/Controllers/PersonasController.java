@@ -1,5 +1,6 @@
 package Controllers;
 
+import Tablas.Alumnos;
 import Tablas.Personas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -104,7 +105,25 @@ public class PersonasController implements InterfacePersonas {
 
     @Override
     public void eliminar() {
+        String modificador;
 
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Personas.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("Introduce el DNI de la persona que quieres eliminar");
+        modificador = teclado.next();
+
+        Personas personas = new Personas();
+        personas.setDNI(modificador);
+
+        session.remove(personas);
+        transaction.commit();
+        session.close();
     }
 
     @Override

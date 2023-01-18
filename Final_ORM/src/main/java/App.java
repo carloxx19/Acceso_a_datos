@@ -31,6 +31,7 @@ public class App {
                 case 1 -> {
                     //CASE 1 -> AGREGAR
                     //MUESTRA EL MENU,  Y SELEECIONAMOS LA TABLA EN LA QUE QUEREMOS AGREGAR
+                    System.out.println("***AGREGAR***");
                     tablasController.menuTablas();
                     opcionTabla = teclado.nextInt();
                     if (opcionTabla == 1) {
@@ -55,6 +56,7 @@ public class App {
                 }
                 case 2 -> {
                     //CASE 2-> CONSULTAR POR ID.
+                    System.out.println("***CONSULTAR***");
                     tablasController.menuTablas();
                     opcionTabla = teclado.nextInt();
                     if (opcionTabla == 1) {
@@ -75,6 +77,7 @@ public class App {
                 }
                 case 3 -> {
                     //CASE 3-> ACTUALIZAR POR ID
+                    System.out.println("***ACTUALIZAR***");
                     tablasController.menuTablas();
                     opcionTabla = teclado.nextInt();
 
@@ -95,7 +98,25 @@ public class App {
                     }
                 }
                 case 4 -> {
+                    System.out.println("***ELIMINAR***");
+                    tablasController.menuTablas();
+                    opcionTabla = teclado.nextInt();
 
+                    if (opcionTabla == 1) {
+                        PersonasController personasController = new PersonasController();
+                        personasController.eliminar();
+                    } else if (opcionTabla == 2) {
+                        AlumnosController alumnosController = new AlumnosController();
+                        alumnosController.eliminar();
+                    } else if ((opcionTabla == 3)) {
+                        ProfesoresController profesoresController = new ProfesoresController();
+                        profesoresController.eliminar();
+                    } else if (opcionTabla == 4) {
+                        AsignaturasController asignaturasController = new AsignaturasController();
+                        asignaturasController.eliminar();
+                    } else {
+                        System.out.println("opcion introducida no valida");
+                    }
                 }
             }
         }

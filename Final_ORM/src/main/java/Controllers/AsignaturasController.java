@@ -118,6 +118,24 @@ public class AsignaturasController implements MetodosTablas {
 
     @Override
     public void eliminar() {
+        int modificador;
 
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Asignaturas.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        System.out.println("Introduce el id de la asignatura que quieres eliminar");
+        modificador = teclado.nextInt();
+
+        Asignaturas asignaturas = new Asignaturas();
+        asignaturas.setIdAsignatura(modificador);
+
+        session.remove(asignaturas);
+        transaction.commit();
+        session.close();
     }
 }
