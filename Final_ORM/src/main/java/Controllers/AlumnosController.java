@@ -116,7 +116,7 @@ public class AlumnosController implements MetodosTablas {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
 
-        Alumnos alumnos = null;
+        Alumnos alumnos;
 
         Transaction transaction = null;
         transaction = session.beginTransaction();

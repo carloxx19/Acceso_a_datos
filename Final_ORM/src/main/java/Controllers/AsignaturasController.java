@@ -1,13 +1,10 @@
 package Controllers;
 
-import Tablas.Alumnos;
 import Tablas.Asignaturas;
-import Tablas.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
 import java.util.Scanner;
 
 public class AsignaturasController implements MetodosTablas {

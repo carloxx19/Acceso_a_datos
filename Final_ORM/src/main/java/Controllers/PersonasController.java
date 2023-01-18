@@ -1,11 +1,11 @@
 package Controllers;
 
-import Tablas.Alumnos;
 import Tablas.Personas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
 import java.util.Scanner;
 
 public class PersonasController implements InterfacePersonas {
@@ -67,7 +67,13 @@ public class PersonasController implements InterfacePersonas {
 
         System.out.println("Introduce el DNI de la persona a consultar.");
         dni = teclado.next();
-        System.out.println(obtenerdni(dni).toString());
+
+        if (obtenerdni(dni) != null) {
+            System.out.println(obtenerdni(dni).toString());
+        } else {
+            System.out.println("No existe ese dni");
+        }
+
     }
 
     @Override
@@ -128,20 +134,24 @@ public class PersonasController implements InterfacePersonas {
 
     @Override
     public Personas obtenerdni(String dni) {
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate2.cfg.xml");
-        configuration.addAnnotatedClass(Personas.class);
-
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-
         Personas personas = null;
+        try {
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate2.cfg.xml");
+            configuration.addAnnotatedClass(Personas.class);
 
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Session session = sessionFactory.openSession();
 
-        personas = session.get(Personas.class, dni);
-        session.getTransaction().commit();
+            personas = session.get(Personas.class, dni);
+
+            if (personas != null) {
+                session.getTransaction().commit();
+            }
+
+        } catch (Exception exception) {
+            System.out.println("empleado no encontrado");
+        }
         return personas;
     }
 }
