@@ -14,7 +14,6 @@ public class AsignaturasController implements MetodosTablas {
     @Override
     public void agregar() {
 
-        int prueba;
         int idAsignatura;
         int idProfesor;
         String nombre;
@@ -138,8 +137,6 @@ public class AsignaturasController implements MetodosTablas {
     }
 
     public void eliminar2(int idEliminar) {
-
-
         Configuration configuration = new Configuration();
         configuration.configure("hibernate2.cfg.xml");
         configuration.addAnnotatedClass(Profesores.class);
