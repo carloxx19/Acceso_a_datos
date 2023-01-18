@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
 import java.util.Scanner;
 
 public class AlumnosController implements MetodosTablas {
@@ -17,7 +18,7 @@ public class AlumnosController implements MetodosTablas {
         int id;
         String salir;
 
-        while (true) {
+        do {
 
             System.out.println("añade el dni");
             dni = teclado.next();
@@ -44,10 +45,7 @@ public class AlumnosController implements MetodosTablas {
             System.out.println("S - salir");
             salir = teclado.next();
 
-            if (salir.equalsIgnoreCase("S")) {
-                break;
-            }
-        }
+        } while (!salir.equalsIgnoreCase("S"));
     }
 
     @Override
@@ -56,7 +54,13 @@ public class AlumnosController implements MetodosTablas {
 
         System.out.println("Introduce el ID de el alumno a consultar.");
         id = teclado.nextInt();
-        System.out.println(obtenerId(id).toString());
+
+        if (obtenerId(id) != null) {
+            System.out.println(obtenerId(id).toString());
+        } else {
+            System.out.println("Alumno no encontrado");
+        }
+
     }
 
     @Override
@@ -85,6 +89,8 @@ public class AlumnosController implements MetodosTablas {
         session.close();
     }
 
+
+
     @Override
     public void eliminar() {
         int modificador;
@@ -109,20 +115,26 @@ public class AlumnosController implements MetodosTablas {
     }
 
     public Alumnos obtenerId(int id) {
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate2.cfg.xml");
-        configuration.addAnnotatedClass(Alumnos.class);
+        Alumnos alumnos = null;
 
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        try {
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate2.cfg.xml");
+            configuration.addAnnotatedClass(Alumnos.class);
 
-        Alumnos alumnos;
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Session session = sessionFactory.openSession();
 
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
+            alumnos = session.get(Alumnos.class, id);
 
-        alumnos = session.get(Alumnos.class, id);
-        session.getTransaction().commit();
+            if (alumnos != null) {
+                session.getTransaction().commit();
+            }
+        } catch (Exception exception) {
+            System.out.println(" ");
+        }
         return alumnos;
     }
+
+
 }

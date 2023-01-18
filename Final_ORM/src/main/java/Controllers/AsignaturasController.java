@@ -1,6 +1,7 @@
 package Controllers;
 
 import Tablas.Asignaturas;
+import Tablas.Profesores;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,13 +14,13 @@ public class AsignaturasController implements MetodosTablas {
     @Override
     public void agregar() {
 
+        int prueba;
         int idAsignatura;
         int idProfesor;
         String nombre;
         String salir;
 
-        while (true) {
-
+        do {
             System.out.println("añade el ID del Profesor.");
             idProfesor = teclado.nextInt();
 
@@ -28,6 +29,7 @@ public class AsignaturasController implements MetodosTablas {
 
             System.out.println("añade el nombre de la Asignatura");
             nombre = teclado.next();
+            System.out.println(nombre);
 
             //aqui agrego datos a la base vacia
             Configuration configuration = new Configuration();
@@ -42,7 +44,6 @@ public class AsignaturasController implements MetodosTablas {
             asignaturas.setIdAsignatura(idAsignatura);
             asignaturas.setNombre(nombre);
 
-
             session.beginTransaction();
             session.persist(asignaturas);
             session.getTransaction().commit();
@@ -50,10 +51,7 @@ public class AsignaturasController implements MetodosTablas {
             System.out.println("S - salir");
             salir = teclado.next();
 
-            if (salir.equalsIgnoreCase("S")) {
-                break;
-            }
-        }
+        } while (!salir.equalsIgnoreCase("S"));
     }
 
     @Override
@@ -73,10 +71,7 @@ public class AsignaturasController implements MetodosTablas {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
 
-        Asignaturas asignaturas = null;
-
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
+        Asignaturas asignaturas;
 
         asignaturas = session.get(Asignaturas.class, id);
         session.getTransaction().commit();
@@ -115,6 +110,7 @@ public class AsignaturasController implements MetodosTablas {
 
     @Override
     public void eliminar() {
+        int asitir;
         int modificador;
 
         Configuration configuration = new Configuration();
@@ -131,7 +127,31 @@ public class AsignaturasController implements MetodosTablas {
         Asignaturas asignaturas = new Asignaturas();
         asignaturas.setIdAsignatura(modificador);
 
+        asignaturas = session.get(Asignaturas.class, modificador);
+        asitir = asignaturas.getIdProfesor();
+
         session.remove(asignaturas);
+        transaction.commit();
+        session.close();
+
+        eliminar2(asitir);
+    }
+
+    public void eliminar2(int idEliminar) {
+
+
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate2.cfg.xml");
+        configuration.addAnnotatedClass(Profesores.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Profesores profesores = new Profesores();
+        profesores.setIdProfesor(idEliminar);
+
+        session.remove(profesores);
         transaction.commit();
         session.close();
     }

@@ -14,7 +14,7 @@ public class Asignaturas {
     int IdProfesor;
 
     @Column(name = "Nombre", length = 20)
-    String nombre;
+    String Nombre;
 
     //@OneToOne
     //@JoinColumn(name = "IdProfesor")
@@ -29,14 +29,6 @@ public class Asignaturas {
         this.idAsignatura = idAsignatura;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        nombre = nombre;
-    }
-
     public int getIdProfesor() {
         return IdProfesor;
     }
@@ -45,11 +37,19 @@ public class Asignaturas {
         IdProfesor = idProfesor;
     }
 
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
+    }
+
     @Override
     public String toString() {
         return "***DATOS DE LA ASIGNATURA***" +
                 "\nID Asignatura= " + idAsignatura +
                 "\nID Profesor= " + IdProfesor +
-                "\nNombre asignatura= " + nombre;
+                "\nNombre asignatura= " + Nombre;
     }
 }
